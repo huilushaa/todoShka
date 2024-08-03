@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block content %}
+        <div class="container">
+            <h2>Регистрация</h2>
+            <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <label class="small mb-1" for="{{ form.first_name.id_for_label }}">Имя</label>
+    {{ form.first_name }}
+    {{ form.first_name.errors }}
+    <label class="small mb-1" for="{{ form.last_name.id_for_label }}">Фамилия</label>
+    {{ form.last_name }}
+    {{ form.last_name.errors }}
+    <label class="small mb-1" for="{{ form.username.id_for_label }}">Имя пользователя</label>
+    {{ form.username }}
+    {{ form.username.errors }}
+    <label class="small mb-1" for="{{ form.email.id_for_label }}">Email</label>
+    {{ form.email }}
+    {{ form.email.errors }}
+    <label class="small mb-1" for="{{ form.birth_date.id_for_label }}">Дата рождения</label>
+    {{ form.birth_date }}
+    {{ form.birth_date.errors }}
+    <label class="small mb-1" for="{{ form.location.id_for_label }}">Город</label>
+    {{ form.location }}
+    {{ form.location.errors }}
+    <label class="small mb-1" for="{{ form.avatar.id_for_label }}">Фото профиля</label>
+    {{ form.avatar }}
+    {{ form.avatar.errors }}
+    <label class="small mb-1" for="{{ form.password1.id_for_label }}">Пароль</label>
+    {{ form.password1 }}
+    {{ form.password1.errors }}
+    <label class="small mb-1" for="{{ form.password2.id_for_label }}">Повторите пароль</label>
+    {{ form.password2 }}
+    {{ form.password2.errors }}
+    <button type="submit">Зарегистрироваться</button>
+</form>
+            <div class="login-link">
+                Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a>
+            </div>
+        </div>
+    {% endblock %}

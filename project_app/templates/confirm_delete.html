@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/delete.css' %}">
+</head>
+<body>
+    {% block content %}
+        <div class="container">
+            <h1>Удалить проект</h1>
+            <p>Вы уверены, что хотите удалить проект "{{ object.name }}"?</p>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Да, удалить">
+                <a href="{% url 'project_template' user_pk=project.author.pk %}">">Отмена</a>
+            </form>
+        </div>
+    {% endblock %}
+</body>
+</html>

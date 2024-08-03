@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <h2>Авторизация</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
+            {{ form.username }}
+            {{ form.username.errors }}
+            <label for="{{ form.password.id_for_label }}">Пароль</label>
+            {{ form.password }}
+            {{ form.password.errors }}
+            <button type="submit">Войти</button>
+        </form>
+        <div class="register-link">
+            Нет аккаунта? <a href="{% url 'registration_template' %}">Зарегистрироваться</a>
+        </div>
+    </div>
+{% endblock %}

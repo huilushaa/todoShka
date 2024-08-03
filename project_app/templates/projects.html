@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block content %}
+        <div class="container">
+            <h1>Название проекта</h1>
+            <form method="post" id="projectForm">
+                {% csrf_token %}
+                <div class="input-group">
+                    {{ form.name }}
+                </div>
+                <button type="submit">Добавить</button>
+            </form>
+            <ul id="taskList">
+                {% for project in projects %}
+                    <li class="task-item">
+                        <a href="{% url 'tasks_template' project.id %}">{{ project.name }}</a>
+                        <input type="checkbox" id="scales" name="scales" checked />
+                        <a href="{% url 'project_delete' project.pk %}">
+                            <button type="button">удалить</button>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endblock %}

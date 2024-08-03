@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <a href="{% url 'project_template' user_pk=user.pk %}" class="back-button">Назад</a>
+        <div class="project-title">{{ project_title }}</div>
+        <a href="{% url 'add_task' project_id=project_id %}" class="add-task-btn">Добавить задачу</a>
+        <ul class="task-list">
+            {% for task in tasks %}
+                <li class="task">
+                    <a href="{% url 'edit_task' project_id=task.project.id pk=task.id %}">
+                        <div class="task-title">{{ task.title }}</div>
+                        <div class="task-details">
+                            Время создания: {{ task.created_at }} <br>
+                            Выполнено:
+                            {% if task.completed %}
+                                <span class="completed">Да</span>
+                            {% else %}
+                                <span class="not-completed">Нет</span>
+                            {% endif %}
+                            <br>
+                            Дедлайн: {{ task.due_date }}
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+<script>
+    function toggleComments(taskId) {
+        const commentsDiv = document.getElementById('comments-' + taskId);
+        if (commentsDiv) {
+            commentsDiv.style.display = commentsDiv.style.display === 'none' || commentsDiv.style.display === '' ? 'block' : 'none';
+        }
+    }
+</script>
